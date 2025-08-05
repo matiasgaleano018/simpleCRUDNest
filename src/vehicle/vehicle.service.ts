@@ -13,4 +13,8 @@ export class VehicleService {
     getAllVehicles(): Promise<Vehicle[]> {
         return this.vehicleRepository.find();
     }
+
+    setVehicle(vehicle: Partial<Vehicle>): Promise<Vehicle> {
+        return this.vehicleRepository.save(vehicle);
+    }
 }

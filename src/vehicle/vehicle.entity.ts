@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
 
 @Entity()
 export class Vehicle {
@@ -6,6 +6,7 @@ export class Vehicle {
     id: number;
 
     @Column()
+    @Unique('UQ_vehicle_license', ['license'])
     license: string;
 
     @Column()
@@ -17,9 +18,15 @@ export class Vehicle {
     @Column()
     brand: string;
 
-    @Column()
+    @Column({
+        type: 'timestamp',
+        default: () => 'CURRENT_TIMESTAMP',
+    })
     created_at: Date;
 
-    @Column()
+    @Column({
+        type: 'timestamp',
+        default: () => 'CURRENT_TIMESTAMP',
+    })
     updated_at: Date;
 }
